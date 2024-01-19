@@ -3,7 +3,7 @@ const SignIn = () => {
   return (
     <>
       <div className="mx-auto  mt-6 p-3 max-w-lg items-center border-2 border-teal-700">
-        <h1 className="text-3xl font-bold text-center my-7">Sign Up</h1>
+        <h1 className="text-3xl font-bold text-center my-7">Sign In</h1>
         <form className="flex flex-col gap-4 p-3 ">
           <input
             type="text"
