@@ -22,7 +22,6 @@ function SignUp() {
         }
       });
       const data = res.data
-      console.log(data)
       navigate('/sign-in')
     } catch (error) {
         console.log(error)
@@ -35,11 +34,12 @@ function SignUp() {
         <h1 className="text-3xl font-bold text-center my-7">Sign Up</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-3 ">
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             id="email"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handlechange}
+            required
          />
           <input
             type="text"
@@ -47,6 +47,7 @@ function SignUp() {
             id="username"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handlechange}
+            required
         />
           <input
             type="password"
@@ -54,6 +55,7 @@ function SignUp() {
             id="password"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handlechange}
+            required
           />
           <input
             type="password"
@@ -61,6 +63,7 @@ function SignUp() {
             id="confirmPassword "
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handlechange}
+            required
           />
           <button className=" my-4  bg-teal-700 p-2  rounded-lg text-lg hover:opacity-75">
             Sign Up

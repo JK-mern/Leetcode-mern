@@ -1,24 +1,52 @@
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 const SignIn = () => {
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({});
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit =async(e)=>{
+    e.preventDefault();
+    try {
+        const res = await axios.post('/api/auth/signin',formData,{
+          headers : {
+            "Content-Type" : "application/json"
+          }
+        })
+        const data = res.data
+        navigate('/problems')
+        
+    } catch (error) {
+      console.log(error)
+    }
+  }
+ 
   return (
     <>
       <div className="mx-auto  mt-6 p-3 max-w-lg items-center border-2 border-teal-700">
         <h1 className="text-3xl font-bold text-center my-7">Sign In</h1>
-        <form className="flex flex-col gap-4 p-3 ">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-3 ">
           <input
-            type="text"
+            type="email"
             placeholder="Email"
             id="email"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
+            onChange={handleChange}
+            required
           />
-      
+
           <input
             type="password"
             placeholder="Password"
             id="password"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
-          />
-         
+            onChange={handleChange}
+            required
+         />
+
           <button className=" my-4  bg-teal-700 p-2  rounded-lg text-lg hover:opacity-75">
             Sign In
           </button>
