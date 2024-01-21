@@ -1,29 +1,40 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  signInStart,
+  signInSucces,
+  signInFailure,
+} from "../redux/user/user.slice";
+import {useSelector, useDispatch } from 'react-redux'
+
 const SignIn = () => {
-  const navigate = useNavigate()
+  const Dispatch = useDispatch()
+  const { loading, error } = useSelector( (state)=> state.user );
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
-  const handleSubmit =async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        const res = await axios.post('/api/auth/signin',formData,{
-          headers : {
-            "Content-Type" : "application/json"
-          }
-        })
-        const data = res.data
-        navigate('/problems')
-        
+      const res = await axios.post("/api/auth/signin", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = res.data;
+      Dispatch ( (signInSucces(data)))
+      navigate("/problems");
+      
     } catch (error) {
-      console.log(error)
+      console.log(error);
+
     }
-  }
- 
+  };
+
   return (
     <>
       <div className="mx-auto  mt-6 p-3 max-w-lg items-center border-2 border-teal-700">
@@ -45,7 +56,7 @@ const SignIn = () => {
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handleChange}
             required
-         />
+          />
 
           <button className=" my-4  bg-teal-700 p-2  rounded-lg text-lg hover:opacity-75">
             Sign In

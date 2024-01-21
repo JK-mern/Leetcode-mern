@@ -6,6 +6,7 @@ import Header from "./Components/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Problems from "./Pages/Problems";
 import About from "./Pages/About";
+import PrivateRoute from "./Components/PrivateRoute";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
