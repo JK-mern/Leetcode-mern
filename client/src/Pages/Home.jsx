@@ -1,11 +1,41 @@
-
-
+import { Link } from "react-router-dom";
 function Home() {
   return (
-    <div>
-      <h1></h1>
-    </div>
-  )
+    <main>
+      <div className="flex max-w-6xl mx-auto my-8  flex-col p-3  md:flex-row">
+        <div className="flex w-8/12 gap-5 justify-center flex-col">
+          <h1 className="leading-tight text-6xl font-bold font-serif text-transparent bg-clip-text bg-gradient-to-r from-teal-600  to-yellow-500">
+            Algo Xpert <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-violet-500 ">
+              Where Complexity Meets Clarity{" "}
+            </span>
+          </h1>
+          <p className="text-sm text-zinc-400">
+            Step into the heart of algorithmic excellence with DSA Nexus, your
+            ultimate destination <br /> for mastering Data Structures and
+            Algorithms.
+          </p>
+          <div className="flex flex-row gap-3 ">
+            <Link to="/sign-up">
+              {" "}
+              <button className="btn btn-wide">Create an Account</button>
+            </Link>
+            <Link to="/problems">
+              {" "}
+              <button className="btn btn-wide">Explore Problem Library</button>
+            </Link>
+          </div>
+        </div>
+        <div className="w-4/12 p-5  ">
+          <img
+            src="https://images.pexels.com/photos/270360/pexels-photo-270360.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt=""
+            className="rounded-2xl h-96 w-full"
+          />
+        </div>
+      </div>
+    </main>
+  );
 }
 
-export default Home
+export default Home;
