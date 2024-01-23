@@ -21,7 +21,15 @@ function Header() {
           <Link to="/about">
             <li className="hidden md:inline hover:opacity-75">About</li>
           </Link>
-
+          {/* {currentUser.isAdmin ? (
+            <Link to="/addQuestion">
+              <li className="hidden md:inline hover:opacity-75">
+                Add Questions
+              </li>
+            </Link>
+          ) : (
+            ""
+          )} */}
           <Link to="/profile">
             {currentUser ? (
               <img
