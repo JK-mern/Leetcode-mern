@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Problems from "./Pages/Problems";
 import About from "./Pages/About";
 import PrivateRoute from "./Components/PrivateRoute";
+import AddProblems from "./Pages/AddProblems";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/problems" element={<Problems />} />
+          <Route path="/addproblems" element = {< AddProblems/>} />
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
