@@ -1,7 +1,7 @@
 const AddProblems = ()=>{
     return (
         <>
-        add problems
+        <h1>add problems</h1>
         </>
     )
 }

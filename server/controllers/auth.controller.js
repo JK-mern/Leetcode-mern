@@ -26,9 +26,9 @@ export const signin = async (req, res, next) => {
 
 export const signup = async (req, res, next) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, isAdmin } = req.body;
     const hashedPassword = bcrypt.hashSync(password, 12);
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword, isAdmin : isAdmin||false });
     await newUser.save();
     res.status(201).json("User has been created Succesfully");
   } catch (error) {

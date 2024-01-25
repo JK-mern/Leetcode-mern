@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function Header() {
-  const { currentUser } = useSelector((state) => state.user);
+  let  { currentUser } = useSelector((state) => state.user);
   return (
     <div className="flex  p-5 justify-between items-center cursor-pointer md:mx-20  ">
       <Link to="/">
@@ -21,15 +21,13 @@ function Header() {
           <Link to="/about">
             <li className="hidden md:inline hover:opacity-75">About</li>
           </Link>
-          {/* {currentUser.isAdmin ? (
-            <Link to="/addQuestion">
+          {currentUser && currentUser.isAdmin && (
+            <Link to="/addproblems">
               <li className="hidden md:inline hover:opacity-75">
                 Add Questions
               </li>
             </Link>
-          ) : (
-            ""
-          )} */}
+          ) }
           <Link to="/profile">
             {currentUser ? (
               <img
