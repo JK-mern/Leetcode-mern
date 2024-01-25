@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import connectDb  from './utils/db.js';
 import authRouter from './routes/auth.route.js'
+import problemRouter from './routes/problem.route.js'
 dotenv.config()
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json())
 
 
 app.use("/api/auth",authRouter)
+app.use('/api/problem',problemRouter)
 
 
 
