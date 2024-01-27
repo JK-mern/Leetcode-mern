@@ -1,10 +1,66 @@
 import { useState } from "react";
+import axios from "axios";
 
 const AddProblems = () => {
   const [exampleNo, setExampleNo] = useState(1);
+
+  const [formData, setFormData] = useState({
+    title: "",
+    difficulty: "easy",
+    description: "",
+    example: Array.from({ length: 1 }, () => ({
+      input: "",
+      output: "",
+      explanation: "",
+    })),
+    followUp: "",
+  });
+
   const setExampleState = (e) => {
     setExampleNo(+e.target.value);
+    const count = +e.target.value;
+    const example = [...formData.example];
+    console.log(example)
+
+    if (count > example.length) {
+      for (let i = example.length; i < count; i++) {
+        example.push({ input: "", output: "", explanation: "" });
+      }
+    } else if (count < example.length) {
+      example.splice(count);
+    }
+
+    setFormData({ ...formData, example: example });
   };
+
+  const handleChange = (e, index) => {
+    if (
+      e.target.id === "input" ||
+      e.target.id === "output" ||
+      e.target.id === "explanation"
+    ) {
+      const { id, value } = e.target;
+      const newExample = [...formData.example];
+      newExample[index][id] = value;
+      console.log(newExample);
+      setFormData({ ...formData, example: newExample });
+    } else setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleSubmit = async(e) =>{
+    e.preventDefault()
+    try {
+      const res =  await axios.post('/api/problem/addproblems',formData,{
+        headers : {
+          'Content-Type' : 'application/json'
+        }
+      })
+      console.log(res)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <main className="max-w-4xl  mx-auto  my-6 ">
       <div className=" text-center p-3 ">
@@ -14,35 +70,41 @@ const AddProblems = () => {
         >
           Add Problems
         </h1>
-        <form className="flex flex-col  gap-10  p-3 mt-7 ">
+        <form onSubmit={handleSubmit} className="flex flex-col  gap-10  p-3 mt-7 ">
           <input
             type="text"
             id="title"
             placeholder="Title"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
+            onChange={handleChange}
+            required
           />
           <div className="text-center items-center flex ">
             <label className="font-bold ">Difficulty:</label>
-            <select className="select ml-3  px-7 border-slate-500 focus:outline-none focus:border-teal-700  w-full">
-              <option value='Easy'>Easy</option>
-              <option value='Medium'>Medium</option>
-              <option value='Hard'>Hard</option>
+            <select
+              className="select ml-3  px-7 border-slate-500 focus:outline-none focus:border-teal-700  w-full "
+              onChange={handleChange}
+              id="difficulty"
+            >
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
             </select>
           </div>
           <textarea
             className="textarea textarea-bordered focus:outline-none focus:border-teal-700"
             placeholder="Write the problem Description"
-            id="de"
+            id="description"
             rows="6"
+            onChange={handleChange}
+            required
           ></textarea>
 
           <div className="text-center items-center flex ">
-            <label className="font-bold ">
-              No of Examples :{" "}
-            </label>
+            <label className="font-bold ">No of Examples : </label>
             <select
               className="select ml-3  px-7 border-slate-500 focus:outline-none focus:border-teal-700 w-full w-full"
-              onClick={setExampleState}
+              onChange={setExampleState}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -61,16 +123,21 @@ const AddProblems = () => {
                     id="input"
                     placeholder="input"
                     className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
+                    onChange={(e) => handleChange(e, index)}
                   />
                   <input
                     type="text"
                     placeholder="output"
                     className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
+                    onChange={(e) => handleChange(e, index)}
+                    id="output"
                   />
                   <input
                     type="text"
                     placeholder="explanation"
                     className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
+                    onChange={(e) => handleChange(e, index)}
+                    id="explanation"
                   />
                 </div>
               </div>
@@ -79,9 +146,15 @@ const AddProblems = () => {
           <input
             type="text"
             placeholder="Follow-Up"
+            id="followUp"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
+            onChange={handleChange}
           />
-          <button type="button" className="bg-teal-700 p-3 rounded-xl hover:opacity-70 uppercase" >Submit </button>
+          <button
+            className="bg-teal-700 p-3 rounded-xl hover:opacity-70 uppercase"
+          >
+            Submit{" "}
+          </button>
         </form>
       </div>
     </main>
