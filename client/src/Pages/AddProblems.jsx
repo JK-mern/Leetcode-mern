@@ -20,7 +20,6 @@ const AddProblems = () => {
     setExampleNo(+e.target.value);
     const count = +e.target.value;
     const example = [...formData.example];
-    console.log(example)
 
     if (count > example.length) {
       for (let i = example.length; i < count; i++) {
@@ -42,7 +41,6 @@ const AddProblems = () => {
       const { id, value } = e.target;
       const newExample = [...formData.example];
       newExample[index][id] = value;
-      console.log(newExample);
       setFormData({ ...formData, example: newExample });
     } else setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -55,7 +53,8 @@ const AddProblems = () => {
           'Content-Type' : 'application/json'
         }
       })
-      console.log(res)
+      const data = res.data
+      console.log(data)
     } catch (error) {
       console.log(error)
     }
