@@ -7,6 +7,8 @@ import {
   signInFailure,
 } from "../redux/user/user.slice";
 import {useSelector, useDispatch } from 'react-redux'
+import Toast from "../Components/Toast";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
   const Dispatch = useDispatch()
@@ -27,10 +29,15 @@ const SignIn = () => {
       });
       const data = res.data;
       Dispatch ( (signInSucces(data)))
-      navigate("/problems");
+      toast.success("User sign In Successfull")
+      setTimeout(()=>{
+        navigate("/problems");
+      },1000)
+     
       
     } catch (error) {
-      console.log(error);
+      const data = error.response.data
+      toast.error(data.message)
 
     }
   };
@@ -68,6 +75,7 @@ const SignIn = () => {
             <span className="text-blue-500">Sign up</span>
           </Link>
         </div>
+        <Toast />
       </div>
     </>
   );
