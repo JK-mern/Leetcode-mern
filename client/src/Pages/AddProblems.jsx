@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-
+import { toast } from "react-toastify";
+import Toast from '../Components/Toast'
 const AddProblems = () => {
   const [exampleNo, setExampleNo] = useState(1);
 
   const [formData, setFormData] = useState({
     title: "",
-    difficulty: "easy",
+    difficulty: "Easy",
     description: "",
     example: Array.from({ length: 1 }, () => ({
       input: "",
@@ -54,9 +55,10 @@ const AddProblems = () => {
         }
       })
       const data = res.data
-      console.log(data)
+      toast.success("Problem Added Successfully")
     } catch (error) {
-      console.log(error)
+      const data = error.response.data
+      toast.error(data.message)
     }
   }
 
@@ -156,6 +158,7 @@ const AddProblems = () => {
           </button>
         </form>
       </div>
+      <Toast />
     </main>
   );
 };
