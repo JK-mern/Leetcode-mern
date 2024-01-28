@@ -1,35 +1,47 @@
 import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
-import axios from 'axios'
-
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+import Toast from "../Components/Toast";
 
 function SignUp() {
-  
-  const [formData, setFormData] = useState({})
-  const navigate = useNavigate() 
-  const handlechange = (e) =>{
+  const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
+  const handlechange = (e) => {
     setFormData({
-      ...formData, [e.target.id] : e.target.value
-    })
-  }
-  
-  const handleSubmit = async(e) =>{
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post('/api/auth/signup', formData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const data = res.data
-      navigate('/sign-in')
-    } catch (error) {
-        console.log(error)
+    const password = formData.password;
+    const confirmPassword = formData.confirmPassword;
+    if (password !== confirmPassword) {
+      toast.warning("Password doesn't match");
+      return;
     }
-  }
+    try {
+      const res = await axios.post("/api/auth/signup", formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = res.data;
+      console.log(data)
+      toast.success(data);
+      setTimeout(() => {
+        navigate("/sign-in");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+      const data = error.response.data;
+      toast.error(data.message);
+    }
+  };
 
   return (
-    < >
+    <>
       <div className="mx-auto  mt-6 p-3 max-w-lg items-center border-2 border-teal-700">
         <h1 className="text-3xl font-bold text-center my-7">Sign Up</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-3 ">
@@ -40,7 +52,7 @@ function SignUp() {
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handlechange}
             required
-         />
+          />
           <input
             type="text"
             placeholder="Username"
@@ -48,7 +60,7 @@ function SignUp() {
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handlechange}
             required
-        />
+          />
           <input
             type="password"
             placeholder="Password"
@@ -60,7 +72,7 @@ function SignUp() {
           <input
             type="password"
             placeholder="Confirm-Password"
-            id="confirmPassword "
+            id="confirmPassword"
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handlechange}
             required
@@ -76,6 +88,7 @@ function SignUp() {
           </Link>
         </div>
       </div>
+      <Toast />
     </>
   );
 }

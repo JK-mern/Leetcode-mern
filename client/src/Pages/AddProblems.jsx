@@ -102,7 +102,7 @@ const AddProblems = () => {
           <div className="text-center items-center flex ">
             <label className="font-bold ">No of Examples : </label>
             <select
-              className="select ml-3  px-7 border-slate-500 focus:outline-none focus:border-teal-700 w-full w-full"
+              className="select ml-3  px-7 border-slate-500 focus:outline-none focus:border-teal-700  w-full"
               onChange={setExampleState}
             >
               <option value="1">1</option>
