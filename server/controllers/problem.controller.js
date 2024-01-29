@@ -29,6 +29,18 @@ export const getAllProblems = async (req, res, next) => {
     }));
     res.json(problem);
   } catch (error) {
-    next(error)
+    next(error);
+  }
+};
+
+export const getProblem = async (req, res, next) => {
+  try {
+    const title = req.params.title;
+    const problem = await Problem.findOne({ title });
+    if (!problem) return next(errorHandler(401, "Problem Not Found"));
+
+    res.json(problem);
+  } catch (error) {
+    next(error);
   }
 };
