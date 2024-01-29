@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 function Header() {
   let  { currentUser } = useSelector((state) => state.user);
   return (
-    <div className="flex  p-5 justify-between items-center cursor-pointer md:mx-20  ">
+    <div className="flex  p-5 justify-between items-center cursor-pointer md:mx-20   ">
       <Link to="/">
         <div className="flex gap-1 ">
           <h1 className="font-bold text-3xl">Algo</h1>
@@ -11,7 +11,7 @@ function Header() {
         </div>
       </Link>
       <div>
-        <ul className="flex items-center gap-4 text-base ">
+        <ul className="flex items-center gap-4 text-base font-bold">
           <Link to="/">
             <li className="hidden md:inline  hover:opacity-75">Home</li>{" "}
           </Link>

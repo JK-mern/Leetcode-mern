@@ -23,7 +23,7 @@ function Home() {
               your ultimate destination <br /> for mastering Data Structures and
               Algorithms.
             </p>
-            <div className="flex flex-col md:flex-row gap-3 items-center">
+            <div className="flex flex-col md:flex-row gap-3 items-center ">
               <Link to="/sign-up">
                 {" "}
                 <button className="btn btn-wide">Create an Account</button>
