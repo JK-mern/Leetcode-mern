@@ -19,7 +19,6 @@ export const addProblems = async (req, res, next) => {
 export const getAllProblems = async (req, res, next) => {
   try {
     const skipValue = parseInt(req.query.skip) || 0;
-    console.log(skipValue);
     const problems = await Problem.find()
       .skip(skipValue)
       .sort({ createdAt: 1 })
