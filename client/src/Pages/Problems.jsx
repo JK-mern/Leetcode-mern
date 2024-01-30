@@ -24,8 +24,6 @@ function Problems() {
     setSkipValue(Math.max(0, skipValue - 10));
   };
 
-  console.log(questions)
-
   return (
     <main className="max-w-6xl mx-auto my-10">
       <div className="overflow-x-auto">
