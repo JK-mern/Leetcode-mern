@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-function Problems() {
+function ProblemLibrary() {
   const [skipValue, setSkipValue] = useState(0);
   const [questions, setQuestions] = useState([]);
 
@@ -84,4 +84,4 @@ function Problems() {
   );
 }
 
-export default Problems;
+export default ProblemLibrary;
