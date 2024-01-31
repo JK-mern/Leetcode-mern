@@ -5,6 +5,7 @@ import {
   faLaptopCode,
   faCode,
 } from "@fortawesome/free-solid-svg-icons";
+import Footer from "../Components/Footer";
 
 function Home() {
   return (
@@ -90,6 +91,7 @@ function Home() {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </main>
   );
