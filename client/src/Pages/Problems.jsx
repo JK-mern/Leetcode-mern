@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Problems() {
@@ -41,7 +42,10 @@ function Problems() {
               questions.map((question, index) => (
                 <tr key={index}>
                   <th>{skipValue + index + 1}</th>
-                  <td className="cursor-pointer">{question.title}</td>
+
+                  <td className="cursor-pointer hover:underline">
+                    <Link to={`/problems/${question.title}`}>{question.title}</Link> 
+                    </td>
                   <td
                     className={
                       question.difficulty === "Easy"
