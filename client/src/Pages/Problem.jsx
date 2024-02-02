@@ -3,11 +3,24 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../Components/Loader";
+import Editor from '@monaco-editor/react';
+import night from 'monaco-themes/themes/Night Owl.json'
+
+
+
 
 function Problem() {
   const { title } = useParams();
   const [currentProblem, setCurrentProblem] = useState({});
   const [loading, setLoading] = useState(true);
+  const [code, setCode] = useState("")
+
+  const handleChange = (value) =>{
+    setCode(value)
+  }
+  
+  console.log(code)
+
 
   useEffect(() => {
     const problem = async () => {
@@ -78,7 +91,23 @@ function Problem() {
             </div>
           </div>
           <div className="w-6/12 ">
-            <h1 className="flex justify-center items-center">Code Editor</h1>
+            <div className="flex justify-between p-3">
+              <div className="flex  items-center">
+                <label className="text-gray-400 font-bold">Language : </label>
+                <select
+                  className="select ml-3  pl-7 pr-7 border-slate-500 focus:outline-none focus:border-teal-700  "
+                  // onChange=
+                >
+                  <option value="javascript">javascript</option>
+                  <option value="python">python</option>
+                  <option value="C++">C++</option>
+                </select>
+              </div>
+              <button className="btn  glass">Submit</button>
+            </div>
+            <div className="p-3 h-dvh">
+              <Editor theme="vs-dark" onChange={handleChange}/ >
+            </div>
           </div>
         </div>
       )}
