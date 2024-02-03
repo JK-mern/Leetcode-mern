@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import connectDb  from './utils/db.js';
 import authRouter from './routes/auth.route.js'
 import problemRouter from './routes/problem.route.js'
+import cookieParser from "cookie-parser";
 dotenv.config()
 
 const app = express();
@@ -11,6 +12,7 @@ const port = 3001;
 connectDb();
 
 app.use(express.json())
+app.use(cookieParser());
 
 
 
