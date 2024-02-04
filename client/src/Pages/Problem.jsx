@@ -3,24 +3,41 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../Components/Loader";
-import Editor from '@monaco-editor/react';
-import night from 'monaco-themes/themes/Night Owl.json'
-
-
-
+import Editor, { useMonaco } from "@monaco-editor/react";
+import nightOwl from "monaco-themes/themes/Night Owl.json";
+import { languageOptions } from "../constants/languageOption.js";
+import Output from "../Components/Output.jsx";
 
 function Problem() {
+  const monaco = useMonaco();
+
   const { title } = useParams();
   const [currentProblem, setCurrentProblem] = useState({});
   const [loading, setLoading] = useState(true);
-  const [code, setCode] = useState("")
+  const [code, setCode] = useState("");
+  const [language, setLanguage] = useState(languageOptions[0]);
+  const [output, setOutput] = useState("This is  a sample output");
 
-  const handleChange = (value) =>{
-    setCode(value)
-  }
-  
-  console.log(code)
+  const handleChange = (value) => {
+    setCode(value);
+  };
 
+  const handleLanguage = (e) => {
+    const selectedId = parseInt(e.target.value);
+    const selectedLanguage = languageOptions.find(
+      (language) => language.id === selectedId
+    );
+    setLanguage(selectedLanguage)
+  };
+
+
+
+  useEffect(() => {
+    if (monaco) {
+      monaco.editor.defineTheme("nightOwl", nightOwl);
+      monaco.editor.setTheme("nightOwl");
+    }
+  }, [monaco]);
 
   useEffect(() => {
     const problem = async () => {
@@ -33,6 +50,7 @@ function Problem() {
       setLoading(false);
     }, 200);
   }, [title]);
+
   return (
     <main className="max-w-6xl mx-auto my-10 ">
       {loading ? (
@@ -95,18 +113,24 @@ function Problem() {
               <div className="flex  items-center">
                 <label className="text-gray-400 font-bold">Language : </label>
                 <select
-                  className="select ml-3  pl-7 pr-7 border-slate-500 focus:outline-none focus:border-teal-700  "
-                  // onChange=
+                  className="select ml-3 pl-7 pr-7 border-slate-500 focus:outline-none focus:border-teal-700"
+                  onChange={handleLanguage}
                 >
-                  <option value="javascript">javascript</option>
-                  <option value="python">python</option>
-                  <option value="C++">C++</option>
+                  {languageOptions.map((language) => (
+                    <option key={language.id} value={language.id}>
+                      {language.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <button className="btn  glass">Submit</button>
             </div>
-            <div className="p-3 h-dvh">
-              <Editor theme="vs-dark" onChange={handleChange}/ >
+            <div className="p-3 h-3/5">
+              <Editor theme="nightOwl" onChange={handleChange} />
+              <div className="mt-5">
+                <h3 className="font-semibold text-lg my-3 pl-3">Output</h3>
+                <Output output={output} />
+              </div>
             </div>
           </div>
         </div>
