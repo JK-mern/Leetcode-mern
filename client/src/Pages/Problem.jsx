@@ -126,7 +126,7 @@ function Problem() {
               <button className="btn  glass">Submit</button>
             </div>
             <div className="p-3 h-3/5">
-              <Editor theme="nightOwl" onChange={handleChange} />
+              <Editor theme="nightOwl" onChange={handleChange} language={language.value} />
               <div className="mt-5">
                 <h3 className="font-semibold text-lg my-3 pl-3">Output</h3>
                 <Output output={output} />
