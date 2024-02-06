@@ -15,16 +15,18 @@ function Problem() {
 
   const { title } = useParams();
   const [currentProblem, setCurrentProblem] = useState({});
-  const [loading, setLoading] = useState(true);
   const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [compileloading, setCompileLoading] = useState(false);
   const [language, setLanguage] = useState(languageOptions[0]);
-  const [output, setOutput] = useState("This is  a sample output");
+  const [output, setOutput] = useState(null);
 
   const handleChange = (value) => {
     setCode(value);
   };
 
   const handleCompile = async () => {
+    setCompileLoading(true);
     const formData = {
       language_id: language.id,
       source_code: btoa(code),
@@ -78,9 +80,11 @@ function Problem() {
         }, 2000);
         return;
       } else {
+        const data = res.data;
+
         toast.success(`Compiled Successfully!`);
-        const data = atob(res.data.stdout);
         setOutput(data);
+        setCompileLoading(false);
         return;
       }
     } catch (error) {
@@ -190,8 +194,9 @@ function Problem() {
               </div>
               <div className=" md:ml-4  ">
                 <button
-                  className="btn  bg-red-900 w-full"
+                  className="btn  bg-red-900 w-full disabled:opacity-15 "
                   onClick={handleCompile}
+                  disabled={compileloading}
                 >
                   Run
                 </button>
