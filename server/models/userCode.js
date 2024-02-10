@@ -5,6 +5,7 @@ const userCodeSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
+    unique:true
   },
 
   CodeSubmitted: [
@@ -21,3 +22,6 @@ const userCodeSchema = mongoose.Schema({
     },
   ],
 });
+
+const Solution = new mongoose.model("Solution", userCodeSchema )
+export  default Solution
