@@ -14,10 +14,12 @@ const userCodeSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Problems",
         required: true,
+        required : true
       },
       Code: {
         type : Map,
-        of : String
+        of : String,
+        required : true
       }
     },
   ],
