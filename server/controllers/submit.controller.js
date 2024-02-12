@@ -18,7 +18,6 @@ export const submitSolution = async (req, res, next) => {
           },
         ],
       };
-
       const newSolution = new Solution(solution);
       await newSolution.save();
       res.status(200).json("Code submitted Succesfully");
@@ -37,7 +36,7 @@ export const submitSolution = async (req, res, next) => {
             { $set: { "CodeSubmitted.$.Code": questionExist.Code } },
             { new: true }
           );
-          res.status(200).json(result);
+          res.status(200).json("Code submitted Successfully");
         } else {
           questionExist.Code.set(req.body.lang, req.body.code);
           const result = await Solution.findOneAndUpdate(
@@ -55,20 +54,22 @@ export const submitSolution = async (req, res, next) => {
           res.status(200).json("Code submitted Succesfully");
         }
       } else {
-    
         const submitCode = {
-          questionId : new mongoose.Types.ObjectId(req.body.questionId),
-          Code : {
-            [req.body.lang] : req.body.code
+          questionId: new mongoose.Types.ObjectId(req.body.questionId),
+          Code: {
+            [req.body.lang]: req.body.code,
+          },
+        };
+
+        const result = await Solution.findOneAndUpdate(
+          { userId: req.user._id },
+          {
+            $push: {
+              CodeSubmitted: submitCode,
+            },
           }
-        }
-       
-        const result = await Solution.findOneAndUpdate({userId: req.user._id} , {
-          $push : {
-            CodeSubmitted : submitCode
-          }
-        })
-       res.status(200).json("Code submitted successfully")
+        );
+        res.status(200).json("Code submitted successfully");
       }
     }
   } catch (error) {
