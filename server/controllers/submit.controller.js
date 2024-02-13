@@ -76,3 +76,28 @@ export const submitSolution = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getSolution = async (req, res, next) => {
+  try {
+    const userSolution = await Solution.findOne(
+      {
+        userId: req.user._id,
+        "CodeSubmitted.questionId": req.params.questionId,
+      },
+      {
+        "CodeSubmitted.$": 1, // Include only the first matched element of CodeSubmitted array
+      }
+    );
+    const item = userSolution.CodeSubmitted.find((item) =>
+      item.Code.has(req.params.lang)
+    );
+    if (item) {
+      const langCode = item.Code.get(req.params.lang);
+      res.status(200).json(langCode);
+    } else {
+      res.status(200).json("");
+    }
+  } catch (error) {
+    next(error);
+  }
+};
