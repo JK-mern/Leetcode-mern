@@ -21,8 +21,6 @@ function Problem() {
   const [language, setLanguage] = useState(languageOptions[0]);
   const [output, setOutput] = useState(null);
 
-  
-
   const handleChange = (value) => {
     setCode(value);
   };
@@ -110,6 +108,7 @@ function Problem() {
   }, [monaco]);
 
   useEffect(() => {
+    setLoading(true);
     const problem = async () => {
       const res = await axios.get(`/api/problem/get/${title}`);
       const data = res.data;
@@ -121,26 +120,40 @@ function Problem() {
     }, 200);
   }, [title]);
 
-  
+  useEffect(() => {
+    if (currentProblem && currentProblem._id) {
+      const getUserCode = async () => {
+        try {
+          const result = await axios.get(
+            `/api/submit/getSolution/${currentProblem._id}/${language.value}`
+          );
+          if (monaco) {
+            monaco.editor.getModels()[0].setValue(result.data);
+          }
+        } catch (error) {
+          console.error("Error fetching user code:", error);
+        }
+      };
+      getUserCode();
+    }
+  }, [language, currentProblem]);
+  console.log(code)
 
-
-  const handleSubmit = async(e) =>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      questionId : currentProblem._id,
-          lang : language.value,
-          code :code
-    }
+      questionId: currentProblem._id,
+      lang: language.value,
+      code: code,
+    };
     try {
-      const result = await axios.post('/api/submit/submitSolution', formData)
-      const data = result.data
-      toast.success(data)
+      const result = await axios.post("/api/submit/submitSolution", formData);
+      const data = result.data;
+      toast.success(data);
     } catch (error) {
-      toast.error(error)
+      toast.error(error);
     }
-   
-   
-  }
+  };
 
   return (
     <main className="max-w-6xl mx-auto my-10 ">
@@ -225,7 +238,12 @@ function Problem() {
                 </button>
               </div>
               <div>
-                <button className="btn  bg-green-600 w-full" onClick={handleSubmit}>Submit</button>
+                <button
+                  className="btn  bg-green-600 w-full"
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </button>
               </div>
             </div>
             <div className="p-3 h-72  md:h-3/5">
