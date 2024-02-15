@@ -1,7 +1,9 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 function Header() {
-  let  { currentUser } = useSelector((state) => state.user);
+  let { currentUser } = useSelector((state) => state.user);
   return (
     <div className="flex  p-5 justify-between items-center cursor-pointer md:mx-20   ">
       <Link to="/">
@@ -10,6 +12,25 @@ function Header() {
           <span className="text-3xl font-semibold text-cyan-700">Xpert</span>
         </div>
       </Link>
+      <div>
+        <form className="hidden  items-center  gap-4  md:inline-flex">
+          <input
+            type="text"
+            name=""
+            id="search"
+            placeholder="Search....."
+            className=" py-2 px-4  rounded-lg bg-transparent border border-gray-500  focus:border-teal-700 focus:outline-none "
+          />
+          <button className="">
+            {" "}
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              style={{ color: "#74C0FC" }}
+              size="lg "
+            />
+          </button>
+        </form>
+      </div>
       <div>
         <ul className="flex items-center gap-4 text-base font-bold">
           <Link to="/">
@@ -27,7 +48,7 @@ function Header() {
                 Add Questions
               </li>
             </Link>
-          ) }
+          )}
           <Link to="/profile">
             {currentUser ? (
               <img
