@@ -13,13 +13,13 @@ function Header() {
         </div>
       </Link>
       <div>
-        <form className="hidden  items-center  gap-4  md:inline-flex">
+        <form className="hidden  items-center justify-center gap-4  md:inline-flex">
           <input
             type="text"
             name=""
             id="search"
             placeholder="Search....."
-            className=" py-2 px-4  rounded-lg bg-transparent border border-gray-500  focus:border-teal-700 focus:outline-none "
+            className=" py-2 px-4  rounded-lg bg-transparent border-b-2 border-t-2 border-gray-500  focus:border-teal-700 focus:outline-none "
           />
           <button className="">
             {" "}
