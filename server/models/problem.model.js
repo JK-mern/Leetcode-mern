@@ -35,7 +35,14 @@ const problemSchema = mongoose.Schema(
     followUp: {
       type: String,
     },
+
+    tags : {
+      type : String,
+      required : true
+    }
   },
+
+  
   { timestamps: true }
 );
 
