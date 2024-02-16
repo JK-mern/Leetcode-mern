@@ -151,6 +151,13 @@ const AddProblems = () => {
             className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
             onChange={handleChange}
           />
+          <input
+            type="text"
+            placeholder="Tag"
+            id="tags"
+            className="p-3 rounded-lg bg-inherit border border-slate-500 focus:border-teal-700 focus:outline-none"
+            onChange={handleChange}
+          />
           <button
             className="bg-teal-700 p-3 rounded-xl hover:opacity-70 uppercase"
           >
