@@ -44,3 +44,19 @@ export const getProblem = async (req, res, next) => {
     next(error);
   }
 };
+
+export const searchPattern = async (req, res, next) => {
+  try {
+    const pattern = req.query.pattern;
+    if (pattern) {
+      const problems = await Problem.find({ tags: pattern });
+      res.status(200).json(problems);
+    }
+    else
+    {
+      res.status().json("Seach pattern is not valid ")
+    }
+  } catch (error) {
+    next(error);
+  }
+};
