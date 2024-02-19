@@ -1,8 +1,22 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+
 function Header() {
+  const [searchTerm, setSearchTerm] = useState('')
+  const navigate = useNavigate()
+  const handleChange = (e)=>{
+    setSearchTerm(e.target.value)
+  }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault()
+    navigate (`/search/${searchTerm}`)
+
+  }
+
   let { currentUser } = useSelector((state) => state.user);
   return (
     <div className="flex  p-5 justify-between items-center cursor-pointer md:mx-20   ">
@@ -12,12 +26,13 @@ function Header() {
           <span className="text-3xl font-semibold text-cyan-700">Xpert</span>
         </div>
       </Link>
+
       <div>
-        <form className="hidden  items-center justify-center gap-4  md:inline-flex">
+        <form onSubmit={handleSubmit} className="hidden  items-center justify-center gap-4  md:inline-flex">
           <input
             type="text"
-            name=""
             id="search"
+            onChange={handleChange}
             placeholder="Search....."
             className=" py-2 px-4  rounded-lg bg-transparent border-b-2 border-t-2 border-gray-500  focus:border-teal-700 focus:outline-none "
           />
@@ -26,7 +41,7 @@ function Header() {
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
               style={{ color: "#74C0FC" }}
-              size="lg "
+              size="xl"
             />
           </button>
         </form>

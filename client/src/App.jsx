@@ -9,6 +9,7 @@ import PrivateRoute from "./Components/PrivateRoute";
 import AddProblems from "./Pages/AddProblems";
 import Problem from "./Pages/Problem";
 import ProblemLibrary from "./Pages/ProblemLibrary";
+import Search from "./Pages/Search";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/search/:pattern" element= {<Search />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/problems/:title" element={<Problem />} />
