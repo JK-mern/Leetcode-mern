@@ -33,8 +33,8 @@ function Header() {
             type="text"
             id="search"
             onChange={handleChange}
-            placeholder="Search....."
-            className=" py-2 px-4  rounded-lg bg-transparent border-b-2 border-t-2 border-gray-500  focus:border-teal-700 focus:outline-none "
+            placeholder="eg:Arrays"
+            className=" py-2 px-4  rounded-lg bg-transparent border-x-2 border-gray-500  focus:border-teal-700 focus:outline-none "
           />
           <button className="">
             {" "}
