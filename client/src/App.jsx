@@ -10,6 +10,7 @@ import AddProblems from "./Pages/AddProblems";
 import Problem from "./Pages/Problem";
 import ProblemLibrary from "./Pages/ProblemLibrary";
 import Search from "./Pages/Search";
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/problems/:title" element={<Problem />} />
           </Route>
+          <Route path="*" element= {<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </>
