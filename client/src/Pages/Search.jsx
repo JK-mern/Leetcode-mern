@@ -23,6 +23,17 @@ function Search() {
     FindProblems();
   }, [problems]);
 
+  const handleNext  = ()=>{
+   
+      setSkipValue(skipValue + 10);
+
+    
+  }
+
+  const handlePrev = ()=>{
+ setSkipValue ( Math.max (0, skipValue -10))
+  }
+
   console.log(problems);
   return (
     <div>
@@ -72,14 +83,14 @@ function Search() {
               <button
                 className="btn btn-active btn-ghost"
                 disabled={skipValue === 0}
-                // onClick={handlePrev}
+                onClick={handlePrev}
               >
                 prev
               </button>
               <button
                 className="btn btn-active btn-ghost "
                 disabled={problems.length < 10}
-                // onClick={handleNext}
+                onClick={handleNext}
               >
                 next
               </button>
