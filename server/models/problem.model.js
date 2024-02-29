@@ -39,7 +39,7 @@ const problemSchema = mongoose.Schema(
     tags : {
       type : String,
       required : true
-    }
+    } 
   },
 
   

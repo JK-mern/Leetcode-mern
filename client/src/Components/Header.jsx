@@ -34,7 +34,7 @@ function Header() {
             id="search"
             onChange={handleChange}
             placeholder="eg : Arrays"
-            className=" py-2 px-4  rounded-lg bg-transparent border-x-2 border-gray-500  focus:border-teal-700 focus:outline-none "
+            className=" py-2 px-4  lowercase rounded-lg bg-transparent border-x-2 border-gray-500  focus:border-teal-700 focus:outline-none "
           />
           <button className="">
             {" "}
