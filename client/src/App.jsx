@@ -11,8 +11,11 @@ import Problem from "./Pages/Problem";
 import ProblemLibrary from "./Pages/ProblemLibrary";
 import Search from "./Pages/Search";
 import NotFound from "./Components/NotFound";
+import { useSelector } from "react-redux";
 
 function App() {
+
+  let { currentUser } = useSelector((state) => state.user); 
   return (
     <>
       <BrowserRouter>
@@ -22,7 +25,10 @@ function App() {
           <Route path="/problems" element={<ProblemLibrary />} />
           <Route path="/addproblems" element={<AddProblems />} />
           <Route path="/about" element={<About />} />
-          <Route path="/sign-in" element={<SignIn />} />
+          <Route
+            path={"/sign-in"}
+            element={currentUser ? <ProblemLibrary /> : <SignIn />}
+          />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/search/:pattern" element= {<Search />} />
           <Route element={<PrivateRoute />}>
