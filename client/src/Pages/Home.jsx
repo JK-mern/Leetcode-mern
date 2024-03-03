@@ -32,7 +32,7 @@ function Home() {
               <Link to="/problems">
                 {" "}
                 <button className="btn btn-wide ">
-                  Explore Problem Library
+                  Problem Library
                 </button>
               </Link>
             </div>
