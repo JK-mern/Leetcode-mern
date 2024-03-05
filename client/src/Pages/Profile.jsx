@@ -16,6 +16,12 @@ function Profile() {
     }
   };
 
+  const handleDelete = async() =>{
+    const id = currentUser._id
+    const res = await axios.delete(`/api/user/delete/${id}`)
+    console.log(res)
+  }
+
   return (
     <div className="max-w-6xl  mx-auto my-6 p-3">
       <div className="flex flex-col gap-5 justify-center items-center text-center">
@@ -32,6 +38,9 @@ function Profile() {
           <button onClick={handleSignOut} className="btn bg-red-900 mt-4 w-36">
             Logout
           </button>
+          <div className="m-3 ">
+            <button onClick={handleDelete} className="btn">Delete Account</button>
+          </div>
         </div>
       </div>
     </div>
