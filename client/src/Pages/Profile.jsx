@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signOutSuccess } from "../redux/user/user.slice";
+import { deleteSuccess, signOutSuccess } from "../redux/user/user.slice";
 import axios from "axios";
 
 function Profile() {
@@ -12,19 +12,23 @@ function Profile() {
       const res = await axios.post("/api/auth/signout");
       Dispatch(signOutSuccess());
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
-  const handleDelete = async() =>{
-    const id = currentUser._id
-    const res = await axios.delete(`/api/user/delete/${id}`)
-    console.log(res)
-  }
+  const handleDelete = async () => {
+    try {
+      const id = currentUser._id;
+      const res = await axios.delete(`/api/user/delete/${id}`);
+      Dispatch(deleteSuccess());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-    <div className="max-w-6xl  mx-auto my-6 p-3">
-      <div className="flex flex-col gap-5 justify-center items-center text-center">
+    <div className="max-w-6xl  mx-auto my-6 p-3 ">
+      <div className="flex flex-col gap-5 justify-center  items-center text-center h-screen">
         <img
           src={currentUser.avatar}
           alt=""
@@ -39,7 +43,9 @@ function Profile() {
             Logout
           </button>
           <div className="m-3 ">
-            <button onClick={handleDelete} className="btn">Delete Account</button>
+            <button onClick={handleDelete} className="btn">
+              Delete Account
+            </button>
           </div>
         </div>
       </div>
