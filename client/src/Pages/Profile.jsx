@@ -10,7 +10,7 @@ function Profile() {
   const handleSignOut = async () => {
     try {
       const res = await axios.post("/api/auth/signout");
-      Dispatch(signOutSuccess());
+      Dispatch(signOutSuccess);
     } catch (error) {
       console.log(error);
     }
