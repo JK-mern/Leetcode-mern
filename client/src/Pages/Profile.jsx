@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteSuccess, signOutSuccess } from "../redux/user/user.slice";
 import axios from "axios";
 
 function Profile() {
   const { currentUser } = useSelector((state) => state.user);
+  const fileRef = useRef(null);
   const Dispatch = useDispatch();
+  const [file, setFile] = useState();
+  const [url, setUrl ]= useState('')
 
   const handleSignOut = async () => {
     try {
@@ -26,14 +29,61 @@ function Profile() {
     }
   };
 
+  const uploadImage = async () => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET);
+    data.append("cloud_name", import.meta.env.VITE_CLOUDINARY_CLOUD_NAME);
+    data.append("folder", "Cloudinary-React");
+
+    try {
+      const response = await fetch(
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+        }/image/upload`,
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const res = await response.json();
+      setUrl(res.secure_url);
+    
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleImageUpload = async () => {
+    await uploadImage()
+  };
+
+    console.log(url)
+
+
   return (
     <div className="max-w-6xl  mx-auto my-6 p-3 ">
       <div className="flex flex-col gap-5 justify-center  items-center text-center h-screen">
+        <input
+          ref={fileRef}
+          type="file"
+          className="hidden"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
         <img
           src={currentUser.avatar}
           alt=""
-          className="h-24 w-24 rounded-full cursor-pointer"
+          className="h-52 w-52 rounded-full cursor-pointer"
+          onClick={() => fileRef.current.click()}
         />
+        {file && (
+          <button
+            className="btn btn-wide btn-success"
+            onClick={handleImageUpload}
+          >
+            Upload Image
+          </button>
+        )}
         <h3 className="font-bold text-xl">{currentUser.username}</h3>
         <div>
           <h2>
