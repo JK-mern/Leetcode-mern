@@ -18,8 +18,7 @@ export const deleteUser = async (req, res, next) => {
 
 export const updateUser = async (req, res, next) => {
   try {
-
-    console.log(req.user.id,req.params.id)
+    
 
     if (req.user.id !== req.params.id)
       return next(errorHandler(401, "You can only Update your Profile!"));
@@ -33,8 +32,8 @@ export const updateUser = async (req, res, next) => {
         $set: {
           username: req.body.username,
           email: req.body.username,
-          password: req.body.password,
           avatar: req.body.avatar,
+          password: req.body.password,
         },
       },
       { new: true }
