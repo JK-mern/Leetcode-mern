@@ -88,12 +88,13 @@ export const getSolution = async (req, res, next) => {
         "CodeSubmitted.$": 1, // Include only the first matched element of CodeSubmitted array
       }
     );
-    const item = userSolution.CodeSubmitted.find((item) =>
-      item.Code.has(req.params.lang)
-    );
-    if (item) {
-      const langCode = item.Code.get(req.params.lang);
-      res.status(200).json(langCode);
+    if (userSolution && userSolution.CodeSubmitted.length > 0) {
+      const langCode = userSolution.CodeSubmitted[0].Code.get(req.params.lang);
+      if (langCode) {
+        res.status(200).json(langCode);
+      } else {
+        res.status(200).json("");
+      }
     } else {
       res.status(200).json("");
     }
