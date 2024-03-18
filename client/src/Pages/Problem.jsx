@@ -137,7 +137,7 @@ function Problem() {
       getUserCode();
     }
   }, [language, currentProblem]);
-  console.log(code)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
