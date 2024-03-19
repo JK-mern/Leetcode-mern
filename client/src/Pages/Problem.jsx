@@ -121,23 +121,24 @@ function Problem() {
   }, [title]);
 
   useEffect(() => {
-    if (currentProblem && currentProblem._id) {
-      const getUserCode = async () => {
+    const fetchData = async () => {
+      if (currentProblem && currentProblem._id && language.value) {
         try {
           const result = await axios.get(
             `/api/submit/getSolution/${currentProblem._id}/${language.value}`
           );
-          if (monaco) {
+
+          if (monaco && monaco.editor.getModels().length > 0) {
             monaco.editor.getModels()[0].setValue(result.data);
           }
         } catch (error) {
           console.error("Error fetching user code:", error);
         }
-      };
-      getUserCode();
-    }
-  }, [language, currentProblem]);
+      }
+    };
 
+    fetchData();
+  }, [language, currentProblem, monaco]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
