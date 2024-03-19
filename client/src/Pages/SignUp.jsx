@@ -42,7 +42,7 @@ function SignUp() {
 
   return (
     <>
-      <div className="mx-auto  mt-6 p-3 max-w-lg items-center border-2 border-teal-700">
+      <div className="mx-auto  mt-10 md:mt-52 p-3 max-w-lg items-center border-2 border-teal-700">
         <h1 className="text-3xl font-bold text-center my-7">Sign Up</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-3 ">
           <input
