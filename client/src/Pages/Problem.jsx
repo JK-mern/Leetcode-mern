@@ -233,7 +233,7 @@ function Problem() {
                 <button
                   className="btn  bg-red-900 w-full disabled:opacity-15 "
                   onClick={handleCompile}
-                  disabled={compileloading}
+                  disabled={compileloading || code.length ===0}
                 >
                   Run
                 </button>
