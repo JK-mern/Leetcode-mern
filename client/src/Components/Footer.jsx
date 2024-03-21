@@ -6,13 +6,11 @@ function Footer() {
   let year = d.getFullYear();
 
   return (
-    <footer className="footer footer-center p-4 bg-base-300 text-base-content bg-transparent my-7">
+    <footer className="footer footer-center  p-4 bg-base-300 text-base-content bg-transparent my-9">
       <aside>
-        <Link to={`mailto:jayakrishnan@gmail.com`}> 
-          <button className="btn btn-wide ">Contact Us</button>
-        </Link>
+       
 
-        <p>Copyright © {year} - All right reserved by ACME Industries Ltd</p>
+        <p>Copyright © {year} - All right reserved by AlgoXpert</p>
       </aside>
     </footer>
   );
