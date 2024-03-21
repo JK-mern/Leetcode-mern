@@ -22,7 +22,7 @@ app.use("/api/problem", problemRouter);
 app.use('/api/submit',submitRouter)
 app.use('/api/user',userRouter)
 
-app.post('/sendMail', async(req,res,next)=>{
+app.post('/api/sendMail', async(req,res,next)=>{
   const{name,email,subject,message} = req.body
   console.log(req.body)
 
