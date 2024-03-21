@@ -1,4 +1,8 @@
+import axios from "axios";
 import React, { useState } from "react";
+import Toast from "./Toast";
+import { toast } from "react-toastify";
+
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,14 +20,24 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you can implement the logic to send the email using an API or any backend service
-    console.log("Form submitted:", formData);
+    const res = await axios.post("/api/sendMail", formData);
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+    toast.success("Email send Succesfully")
+
+
   };
 
   return (
+
     <div className="  max-w-5xl  m-5  items-center">
+        <Toast />
       <h2 className="text-2xl font-semibold mb-4 text-center">Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
@@ -98,10 +112,7 @@ const Contact = () => {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button
-            className="btn btn-wide btn-primary"
-            type="submit"
-          >
+          <button className="btn btn-wide btn-primary" type="submit">
             Send Message
           </button>
         </div>
