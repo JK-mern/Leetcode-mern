@@ -6,6 +6,7 @@ import {
   faCode,
 } from "@fortawesome/free-solid-svg-icons";
 import Footer from "../Components/Footer";
+import Contact from "../Components/Contact";
 
 function Home() {
   return (
@@ -91,6 +92,7 @@ function Home() {
             </div>
           </div>
         </div>
+        <Contact />
         <Footer />
       </div>
     </main>
