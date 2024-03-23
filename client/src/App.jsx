@@ -29,7 +29,7 @@ function App() {
             path={"/sign-in"}
             element={currentUser ? <ProblemLibrary /> : <SignIn />}
           />
-          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-up"  element={currentUser ? <ProblemLibrary /> : <SignUp />}/>
           <Route path="/search/:pattern" element= {<Search />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
