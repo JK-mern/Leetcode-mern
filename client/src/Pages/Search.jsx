@@ -34,7 +34,6 @@ function Search() {
  setSkipValue ( Math.max (0, skipValue -10))
   }
 
-  console.log(problems);
   return (
     <div>
       <div className="max-w-6xl mx-auto my-10">
