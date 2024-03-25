@@ -12,6 +12,7 @@ import ProblemLibrary from "./Pages/ProblemLibrary";
 import Search from "./Pages/Search";
 import NotFound from "./Components/NotFound";
 import { useSelector } from "react-redux";
+import Roadmap from "./Pages/Roadmap";
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           />
           <Route path="/sign-up"  element={currentUser ? <ProblemLibrary /> : <SignUp />}/>
           <Route path="/search/:pattern" element= {<Search />} />
+          <Route path="/roadmap" element = {<Roadmap/>} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/problems/:title" element={<Problem />} />
