@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function Accordation(props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
 
   const toggleAccordion = () => {
@@ -14,14 +14,13 @@ function Accordation(props) {
   return (
     <div className="  w-full lg:w-3/12 border border-teal-700 rounded mt-8 ">
       <div
-        className="flex justify-between items-center p-4 cursor-pointer"
+        className="flex  justify-center items-center p-4 cursor-pointer"
         id={props.id}
     
-        onClick = {toggleAccordion}
-        
+        // onClick={toggleAccordion}
       >
         <h2 className="text-lg font-semibold">{props.title}</h2>
-        <svg
+        {/* <svg
           className={`w-6 h-6 ${isOpen ? "transform rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
@@ -33,7 +32,7 @@ function Accordation(props) {
             strokeWidth={2}
             d="M19 9l-7 7-7-7"
           />
-        </svg>
+        </svg> */}
       </div>
 
       {isOpen && (
