@@ -120,6 +120,7 @@ function Problem() {
     }, 200);
   }, [title]);
 
+  console.log(currentProblem)
   useEffect(() => {
     const fetchData = async () => {
       if (currentProblem && currentProblem._id && language.value) {
@@ -193,25 +194,28 @@ function Problem() {
               </h1>
               {currentProblem.example?.map((ex, index) => (
                 <div key={index} className="my-3 ">
-                  <h3 className="font-semibold">Example{index + 1}</h3>
+                  <h3 className="font-semibold">Example {index + 1}</h3>
                   <p className="mt-2">
-                    <span className="text-gray-400">Input{index + 1} : </span>{" "}
+                    <span className="text-gray-400">Input {index + 1} : </span>{" "}
                     {ex.input}
                   </p>
                   <p className="mt-2">
-                    <span className="text-gray-400">Output{index + 1} : </span>{" "}
+                    <span className="text-gray-400">Output {index + 1} : </span>{" "}
                     {ex.output}
                   </p>
                   {ex.explanation && ex.explanation.length > 2 && (
                     <p className="mt-2">
                       <span className="text-gray-400">
-                        Explanation{index + 1} :{" "}
+                        Explanation {index + 1} :{" "}
                       </span>{" "}
                       {ex.explanation}
                     </p>
                   )}
                 </div>
               ))}
+            </div>
+            <div>
+              {currentProblem?.followUp && (<p>Follow Up : {currentProblem.followUp}</p>)}
             </div>
           </div>
           <div className=" md:w-6/12 ">

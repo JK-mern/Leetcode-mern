@@ -10,7 +10,6 @@ function Roadmap() {
     "Top K Frequent Elements",
     "Product of Array Except Self",
     "Valid Sudoko",
-    "Encode and Decode String",
     "Longest Consecutive Sequence",
   ];
 
@@ -23,7 +22,7 @@ function Roadmap() {
   ];
 
   const stack = [
-    "Valid Parentheses",
+    "	Valid Paranthesis",
     "Min Stack",
     "Evaluate Reverse Polish Notation ",
     "Generate Parentheses",
