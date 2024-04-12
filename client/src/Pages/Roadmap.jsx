@@ -49,6 +49,20 @@ function Roadmap() {
     "Sliding Window Maximum",
   ];
 
+  const LinkedList = [
+    "Reverse Linked List",
+    "Merge Two Sorted Lists",
+    "Reorder List",
+    'Remove Nth Node From End of List',
+    'Copy List With Random Pointer',
+    'Add Two Pointer',
+    'Linked List Cycle',
+    'Find The Duplicate Number',
+    'LRU Cache',
+    'Merge K Sorted Lists',
+    'Reverse Nodes in K Group'
+  ];
+
   return (
     <div className="max-w-7xl mx-auto   my-5 p-3 ">
       <h1 className="text-left ml-2 text-xl font-bold">
@@ -61,7 +75,7 @@ function Roadmap() {
         <Accordation id={3} title="Stack " questions={stack} />
         <Accordation id={4} title="Binary Search" questions={binarySeach} />
         <Accordation id={4} title="Sliding Window" questions={slidingWindow} />
-        {/* <Accordation id={5} title="Linked List"  questions = {slidingWindow}/> */}
+        <Accordation id={5} title="Linked List"  questions = {LinkedList}/>
         {/* <Accordation id={6} title="Binary Search " />
         <Accordation id={6} title="Trees " />
         <Accordation id={6} title="Heap/Priority Queue " />
