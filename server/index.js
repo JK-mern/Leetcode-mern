@@ -14,6 +14,11 @@ const port = 3001;
 
 connectDb();
 
+
+app.get('/' ,(req,res) =>{
+  res.send("Server is running now")
+})
+
 app.use(express.json());
 app.use(cookieParser());
 
