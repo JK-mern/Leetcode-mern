@@ -12,5 +12,15 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    proxy: {
+      "/api": {
+        target: "https://backend-iota-ten-73.vercel.app/", 
+        changeOrigin: true,
+        secure: false,
+       
+      }
+    }
+  },
   plugins: [react()],
 });
