@@ -9,7 +9,7 @@ function Accordation(props) {
   };
 
   return (
-    <div className="  w-full  border border-teal-700 rounded mt-8 ">
+    <div className="  w-full  border border-teal-700 rounded my-3 ">
       <div
         className="flex  justify-between items-center p-4 cursor-pointer"
         id={props.id}
