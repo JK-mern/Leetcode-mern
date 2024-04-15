@@ -21,7 +21,7 @@ function ProblemLibrary() {
 
     setTimeout(() => {
       setLoading(false);
-    }, 400);
+    }, 2000);
   }, [skipValue]);
 
   const handleNext = () => {

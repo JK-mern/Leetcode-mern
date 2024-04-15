@@ -14,9 +14,9 @@ import NotFound from "./Components/NotFound";
 import { useSelector } from "react-redux";
 import Roadmap from "./Pages/Roadmap";
 
-function App() {
 
-  let { currentUser } = useSelector((state) => state.user); 
+function App() {
+  let { currentUser } = useSelector((state) => state.user);
   return (
     <>
       <BrowserRouter>
@@ -26,18 +26,22 @@ function App() {
           <Route path="/problems" element={<ProblemLibrary />} />
           <Route path="/addproblems" element={<AddProblems />} />
           <Route path="/about" element={<About />} />
+
           <Route
             path={"/sign-in"}
             element={currentUser ? <ProblemLibrary /> : <SignIn />}
           />
-          <Route path="/sign-up"  element={currentUser ? <ProblemLibrary /> : <SignUp />}/>
-          <Route path="/search/:pattern" element= {<Search />} />
-          <Route path="/roadmap" element = {<Roadmap/>} />
+          <Route
+            path="/sign-up"
+            element={currentUser ? <ProblemLibrary /> : <SignUp />}
+          />
+          <Route path="/search/:pattern" element={<Search />} />
+          <Route path="/roadmap" element={<Roadmap />} />
           <Route element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
             <Route path="/problems/:title" element={<Problem />} />
           </Route>
-          <Route path="*" element= {<NotFound/>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>

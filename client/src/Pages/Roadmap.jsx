@@ -68,7 +68,7 @@ function Roadmap() {
       <h1 className="text-left ml-2 text-xl font-bold">
         Recommended Roadmap :{" "}
       </h1>
-      <div className="flex    lg:gap-20 justify-start    flex-wrap">
+      <div className="flex  flex-col  justify-center    flex-wrap">
         <Accordation id={1} title="Arrays & Hasing" questions={arrayQues} />
 
         <Accordation id={2} title="Two Pointers" questions={twoPointers} />
