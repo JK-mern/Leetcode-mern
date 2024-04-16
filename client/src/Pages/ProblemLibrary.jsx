@@ -37,7 +37,7 @@ function ProblemLibrary() {
         <Loader />
       ) : (
         <>
-          <div className="my-5 mb-10 p-5  border border-zinc-600 rounded-3xl flex flex-col lg:flex-row justify-between items-center">
+          <div className="my-5 mx-3 mb-10 p-5  border border-zinc-600 rounded-3xl flex flex-col lg:flex-row justify-between items-center">
             <p className="tracking-wider font-serif text-sm  lg:text-base">
               Would you like to take a look at the Roadmap based learning for
               better experience?{" "}
