@@ -37,12 +37,12 @@ function ProblemLibrary() {
         <Loader />
       ) : (
         <>
-          <div className="my-5 mb-10 p-5  border border-zinc-600 rounded-3xl flex justify-between items-center">
-            <p className="tracking-wider font-serif">
+          <div className="my-5 mb-10 p-5  border border-zinc-600 rounded-3xl flex flex-col lg:flex-row justify-between items-center">
+            <p className="tracking-wider font-serif text-sm  lg:text-base">
               Would you like to take a look at the Roadmap based learning for
               better experience?{" "}
             </p>
-            <Link to="/Roadmap" >  <button className=" btn  btn-primary">Click here</button></Link>
+            <Link to="/Roadmap" >  <button className=" btn  w-80 lg:w-28 mt-3 lg:mt-0  btn-primary ">Click here</button></Link>
           
           </div>
 
