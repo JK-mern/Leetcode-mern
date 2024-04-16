@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function Accordation(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,15 +9,28 @@ function Accordation(props) {
     setIsOpen(!isOpen);
   };
 
+  const ulVariants = {
+    closed: {
+      height: 0,
+      opacity: 0,
+      transition: { duration: 0.7 },
+    },
+    open: {
+      height: "auto",
+      opacity: 1,
+      transition: { duration: 0.7 },
+    },
+  };
+
   return (
-    <div className="  w-full  border border-teal-700 rounded my-3 ">
+    <div className="  w-full  border border-teal-700 rounded my-2 ">
       <div
         className="flex  justify-between items-center p-4 cursor-pointer"
         id={props.id}
 
         onClick={toggleAccordion}
       >
-        <h2 className="text-lg font-semibold">{props.title}</h2>
+        <h2 className="text-lg font-bold  ">{props.title}</h2>
         <svg
           className={`w-6 h-6  duration-200 ease-in  ${isOpen ? "transform rotate-180" : ""}`}
           fill="none"
@@ -30,8 +44,14 @@ function Accordation(props) {
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </div>
-
+        </div>
+     
+      <motion.div
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        variants={ulVariants}
+        className="flex flex-col justify-center text-center w-full"
+      >
       {isOpen &&
         props.questions.map((ques, index) => (
           <div
@@ -47,6 +67,7 @@ function Accordation(props) {
             </ul>
           </div>
         ))}
+        </motion.div>
     </div>
   );
 }
