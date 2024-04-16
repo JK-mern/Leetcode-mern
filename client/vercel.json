@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://backend-iota-ten-73.vercel.app/api/$1"
+    },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
