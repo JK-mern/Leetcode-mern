@@ -53,16 +53,33 @@ function Roadmap() {
     "Reverse Linked List",
     "Merge Two Sorted Lists",
     "Reorder List",
-    'Remove Nth Node From End of List',
-    'Copy List With Random Pointer',
-    'Add Two Pointer',
-    'Linked List Cycle',
-    'Find The Duplicate Number',
-    'LRU Cache',
-    'Merge K Sorted Lists',
-    'Reverse Nodes in K Group'
+    "Remove Nth Node From End of List",
+    "Copy List With Random Pointer",
+    "Add Two Pointer",
+    "Linked List Cycle",
+    "Find The Duplicate Number",
+    "LRU Cache",
+    "Merge K Sorted Lists",
+    "Reverse Nodes in K Group",
   ];
 
+  const trees = [
+    "Invet Binary Tree",
+    "Maximum Depth of Binary Tree",
+    "Diameter of Binary Tree",
+    "Balanced Binary Tree",
+    "Same Tree",
+    "Subtree of Another Tree",
+    "Lowest Common Ancestor of a Binary Search Tree",
+    "Binary Tree Level Order Traversal",
+    "Binary Tree Right Side View",
+    "Count Good Nodes In Binary Tree",
+    "Validate Binary Search Tree",
+    "Kth Smallest Element In a Bst",
+    "Construct Binary Tree From Preorder And Inorder Traversal",
+    "Binary Tree Maximum Path Sum",
+    "Serialize And Deserialize Binary Tree",
+  ];
   return (
     <div className="max-w-7xl mx-auto   my-5 p-3 ">
       <h1 className="text-left ml-2 text-xl font-bold">
@@ -75,11 +92,11 @@ function Roadmap() {
         <Accordation id={3} title="Stack " questions={stack} />
         <Accordation id={4} title="Binary Search" questions={binarySeach} />
         <Accordation id={4} title="Sliding Window" questions={slidingWindow} />
-        <Accordation id={5} title="Linked List"  questions = {LinkedList}/>
-        {/* <Accordation id={6} title="Binary Search " />
-        <Accordation id={6} title="Trees " />
-        <Accordation id={6} title="Heap/Priority Queue " />
-        <Accordation id={6} title="Back Tracking " />   */}
+        <Accordation id={5} title="Linked List" questions={LinkedList} />
+        <Accordation id={6} title="Trees "  questions = {trees}/>
+       {/* <Accordation id={6} title="Trees " />
+         <Accordation id={6} title="Heap/Priority Queue " />
+         <Accordation id={6} title="Back Tracking " />   */}
       </div>
     </div>
   );
