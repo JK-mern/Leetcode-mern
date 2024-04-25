@@ -33,7 +33,7 @@ function ProblemLibrary() {
 
   return (
     <main className="max-w-6xl mx-auto my-10">
-      {loading ? (
+      {loading  && questions ? (
         <Loader />
       ) : (
         <>

@@ -117,7 +117,7 @@ function Problem() {
     problem();
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 1000);
   }, [title]);
 
   console.log(currentProblem)
@@ -160,7 +160,7 @@ function Problem() {
   return (
     <main className="max-w-6xl mx-auto my-10 ">
       <Toast />
-      {loading ? (
+      {loading  && currentProblem ? (
         <Loader />
       ) : (
         <div className="flex flex-col md:flex-row">
