@@ -2,11 +2,18 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+// import { useState } from "react";
+// import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  // const [nav, setNav] = useState(false);
+
+  const handleNav = () => {
+    setNav(!nav);
+  };
+
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -81,6 +88,11 @@ function Header() {
             </Link>
           </ul>
         </div>
+        {/* Mobile navigation 
+        <div onClick={handleNav} className="block md:hidden">
+          {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+        </div> */}
+    
       </div>
     </div>
   );
