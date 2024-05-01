@@ -6,13 +6,13 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 // import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 
 function Header() {
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
   // const [nav, setNav] = useState(false);
 
-  const handleNav = () => {
-    setNav(!nav);
-  };
+  // const handleNav = () => {
+  //   setNav(!nav);
+  // };
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
